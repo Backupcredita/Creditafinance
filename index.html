@@ -184,428 +184,295 @@ var woocommerce_params = {"ajax_url":"\/128\/wp-admin\/admin-ajax.php","wc_ajax_
         </script>
         <link rel="stylesheet" href="/index..css">
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Inquiry Form</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            color: rgb(26, 26, 53);
-        }
-
-        .popup {
-            display: flex;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(187, 168, 218, 0.233);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            color: rgb(26, 26, 53);
-        }
-
-        .popup-content {
-            background-color: #0c0264de;
-            padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 90%; 
-            overflow-y: auto; 
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            cursor: pointer;
-            color: white;
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 10px;
-        }
-
-        .form-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #ffffff;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="number"],
-        textarea,select {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: #aaa8a8dc;
-            outline: none;
-            transition: background-color 0.3s;
-            flex: 1;
-            margin-right: 10px;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="number"]:focus,
-        textarea:focus,
-        select:focus {
-            background-color: #ffffff;
-        }
-
-        .employment-options {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .employment-options label {
-            margin-right: 10px;
-        }
-
-        .employment-options div {
-            padding: 10px 15px;
-            border: 1px solid #afafaf;
-            border-radius: 25px;
-            background-color: #5800ca80;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 45%;
-            text-align: center;
-            color: rgb(255, 255, 255);
-        }
-
-        .employment-options div:hover {
-            background-color: #ececec;
-        }
-
-        .employment-options div.active {
-            background-color: #4169E1;
-            color: white;
-        }
-
-        .self-employed-section,
-        .salaried-section {
-            display: none;
-            margin-top: 10px;
-        }
-
-        .active {
-            display: block;
-        }
-
-        select {
-            cursor: pointer;
-        }
-
-        button[type="submit"] {
-            background-color: #ff8b06;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 122px;
-            margin: auto;
-        }
-
-        button:hover {
-            background-color: #365899;
-        }
-
-        @media (max-width: 600px) {
-            .form-row {
-                flex-direction: column;
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inquiry Form</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                color: rgb(26, 26, 53);
             }
-
-            .form-row > div {
-                margin-right: 0;
+    
+            .popup {
+                display: flex;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(187, 168, 218, 0.233);
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                color: rgb(26, 26, 53);
+            }
+    
+            .popup-content {
+                background-color: #0c0264de;
+                padding: 20px;
+                border-radius: 8px;
+                width: 90%;
+                max-width: 500px;
+                max-height: 90%;
+                overflow-y: inherit; 
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+    
+            .close-btn {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 24px;
+                cursor: pointer;
+                color: white;
+            }
+    
+            h2 {
+                text-align: center;
+                color: #333;
+            }
+    
+            .form-group {
+                display: flex;
+                flex-direction: column;
                 margin-bottom: 10px;
             }
-
-            .employment-options {
-                flex-direction: column;
-                align-items: flex-start;
+    
+            .form-row {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 10px;
             }
-        }
-        /* For Chrome, Safari, Edge, and Opera */
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        /* For Firefox */
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-</style>
-
-</head>
-<body>
-    <div id="popup" class="popup">
-        <div class="popup-content">
-            <span class="close-btn" id="close-btn" >&times;</span>
-            <h2 style="color: white;">Submit Your Inquiry</h2>
-            <form id="inquiry-form">
-                <div class="form-row">
+    
+            label {
+                margin-bottom: 5px;
+                font-weight: bold;
+                color: #ffffff;
+            }
+    
+            input[type="text"],
+            input[type="email"],
+            input[type="number"],
+            textarea,
+            select {
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                background-color: #aaa8a8dc;
+                outline: none;
+                transition: background-color 0.3s;
+                flex: 1;
+                margin-right: 10px;
+            }
+    
+            input[type="text"]:focus,
+            input[type="email"]:focus,
+            input[type="number"]:focus,
+            textarea:focus,
+            select:focus {
+                background-color: #ffffff;
+            }
+    
+            .employment-options {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+    
+            .employment-options label {
+                margin-right: 10px;
+            }
+    
+            .employment-options div {
+                padding: 10px 15px;
+                border: 1px solid #afafaf;
+                border-radius: 25px;
+                background-color: #5800ca80;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                width: 48%;
+                text-align: center;
+                color: rgb(255, 255, 255);
+            }
+    
+            .employment-options div:hover {
+                background-color: #ececec;
+            }
+    
+            .employment-options div.active {
+                background-color: #4169E1;
+                color: white;
+            }
+    
+            .self-employed-section,
+            .salaried-section {
+                display: none;
+                margin-top: 10px;
+            }
+    
+            .active {
+                display: block;
+            }
+    
+            .employment-sections {
+                display: flex; /* Use flexbox to position sections side by side */
+                justify-content: space-between; /* Add spacing between sections */
+                margin-top: 10px; /* Add margin for spacing */
+            }
+    
+            select {
+                cursor: pointer;
+            }
+    
+            button[type="submit"] {
+                background-color: #3700ff; /* Original color retained */
+                color: white;
+                padding: 12px 20px;
+                border:#333;
+                border-radius: 300px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+                width: 50%;
+                margin: auto;
+            }
+    
+            button:hover {
+                background-color: #365899;
+            }
+    
+            @media (max-width: 600px) {
+                .form-row {
+                    flex-direction: column;
+                }
+    
+                .form-row > div {
+                    margin-right: 0;
+                    margin-bottom: 10px;
+                }
+    
+                .employment-options {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+    
+                .employment-sections {
+                    flex-direction: column; /* Stack sections on smaller screens */
+                }
+            }
+            
+            /* For Chrome, Safari, Edge, and Opera */
+            input[type="number"]::-webkit-outer-spin-button,
+            input[type="number"]::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+    
+            /* For Firefox */
+            input[type="number"] {
+                -moz-appearance: textfield;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <span class="close-btn" id="close-btn">&times;</span>
+                <h2 style="color: white;">Submit Your Inquiry</h2>
+                <form id="inquiry-form">
                     <div class="form-group">
                         <label for="name" style="color: white;">Name:</label>
-                        <input type="text" id="name" name="name" required placeholder="Your Name*" style="width: 160px; border: none; background-color:#f1f1f19a;">
+                        <input type="text" id="name" name="name" required placeholder="Your Name*" style="border: none;width: 100%; background-color:#f1f1f19a;">
                     </div>
                     <div class="form-group">
                         <label for="email" style="color: white;">Email:</label>
-                        <input type="email" id="email" name="email" required placeholder="Your Email*" style="width: 222px; border: none;background-color:#f1f1f19a;">
+                        <input type="email" id="email" name="email" required placeholder="Your Email*" style="border: none;width: 100%; background-color:#f1f1f19a;">
                     </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group1">
+                    <div class="form-group">
                         <label for="mobile" style="color: white;">Phone Number:</label>
-                        <input type="number" id="mobile" name="mobile" required placeholder="Your Phone*" style="border: none;background-color:#f1f1f19a;">
+                        <input type="number" id="mobile" name="mobile" required placeholder="Your Phone*" style="border: none;width: 100%; background-color:#f1f1f19a;">
                     </div>
                     <div class="form-group">
                         <label for="interested" style="color: white;">Interested In:</label>
-                        <select id="interested" name="interested" required style="width: 160px; border: none;background-color:#f1f1f19a;">
-                            <option value="" disabled selected >Select</option>
-                            <option value="home-loan" >Home Loan</option>
-                            <option value="business-loan" >Business Loan</option>
-                            <option value="personal-loan" >Personal Loan</option>
-                            <option value="overdraft" >Overdraft</option>
-                            <option value="others" >Others</option>
+                        <select id="interested" name="interested" required style="border: none;width: 100%; background-color:#f1f1f19a;">
+                            <option value="" disabled selected>Select</option>
+                            <option value="home-loan">Home Loan</option>
+                            <option value="business-loan">Business Loan</option>
+                            <option value="personal-loan">Personal Loan</option>
+                            <option value="overdraft">Overdraft</option>
+                            <option value="others">Others</option>
                         </select>
                     </div>
-                </div>
-                <div class="employment-options">
-                    <div id="self-employed-btn" style="border: none;background-color:#0600579a;">Self Employed</div>
-                    <div id="salaried-btn" style="border: none;background-color:#0600579a;">Salaried</div>
-                </div>
-                <div id="self-employed-section" class="self-employed-section">
-                    <div class="form-group">
-                        <label for="business-type" style="color: white;">Type of Business:</label>
-                        <input type="text" id="business-type" name="business-type" style="border: none;background-color:#f1f1f19a;">
+                    <div class="employment-options" style="display:flex;flex-direction: row;">
+                        <div id="self-employed-btn" style="border: none;background-color:#0600579a;">Self Employed</div>
+                        <div id="salaried-btn" style="border: none;background-color:#0600579a;">Salaried</div>
                     </div>
-                    <div class="form-group">
-                        <label for="annual-income" style="color: white;">Annual Income:</label>
-                        <input type="number" id="annual-income" name="annual-income" style="border: none;background-color:#f1f1f19a;">
-                    </div>
-                </div>
-                <div id="salaried-section" class="salaried-section">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="salary-range" style="color: white;">Salary Range:</label>
-                            <select id="salary-range" name="salary-range" style="width: 150px; border: none;background-color:#f1f1f19a;">
-                                <option value="" disabled selected>Select</option>
-                                <option value="25k-30k">25k-30k</option>
-                                <option value="35k-40k">35k-40k</option>
-                                <option value="45k-50k">45k-50k</option>
-                                <option value="55k-60k">55k-60k</option>
-                                <option value="65k-70k">65k-70k</option>
-                                <option value="others">Others</option>
-                            </select>
+                    <div class="employment-sections">
+                        <div id="self-employed-section" class="self-employed-section">
+                            <div class="form-row">
+                                <div class="form-group" style="margin-right: 1%;">
+                                    <label for="business-type" style="color: white;">Type of Business:</label>
+                                    <input type="text" id="business-type" name="business-type" style="width:100%; border: none;background-color:#f1f1f19a;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="annual-income" style="color: white;">Annual Income:</label>
+                                    <input type="number" id="annual-income" name="annual-income" style=" width:100%; border: none;background-color:#f1f1f19a;">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group1">
-                            <label for="company-name" style="color: white;">Company Name:</label>
-                            <input type="text" id="company-name" name="company-name" style="border: none;background-color:#f1f1f19a;">
+                        <div id="salaried-section" class="salaried-section">
+                            <div class="form-row">
+                                <div class="form-group" style="margin-right: 1%;">
+                                    <label for="salary-range" style="color: white;">Salary Range:</label>
+                                    <select id="salary-range" name="salary-range" style="border: none;background-color:#f1f1f19a; width: 190px;">
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="25k-30k">25k-30k</option>
+                                        <option value="35k-40k">35k-40k</option>
+                                        <option value="45k-50k">45k-50k</option>
+                                        <option value="50k+">50k+</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" >
+                                    <label for="company-name" style="color: white;">Company Name:</label>
+                                    <input type="text" id="company-name" name="company-name" style="border: none;background-color:#f1f1f19a;width: 100%;">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="form-group otp-field" id="otp-section" style="display:none;">
-                    <label for="otp">Enter OTP:</label>
-                    <input type="text" id="otp" name="otp"><br>
-                </div>
-                <!-- <div class="form-group">
-                    <label for="message" style="color: white;">Message (Optional):</label>
-                    <textarea id="message" name="message" rows="3" placeholder="Your Message" style="border:none;background-color:#f1f1f19a;"></textarea>
-                </div> -->
-                <button type="button" id="otp-btn" onclick="getOTP()">Get OTP</button>
-            </form>
+                    <button type="submit">Submit Inquiry</button>
+                </form>
+            </div>
         </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const selfEmployedSection = document.getElementById('self-employed-section');
-            const salariedSection = document.getElementById('salaried-section');
+    
+        <script>
             const selfEmployedBtn = document.getElementById('self-employed-btn');
             const salariedBtn = document.getElementById('salaried-btn');
+            const selfEmployedSection = document.getElementById('self-employed-section');
+            const salariedSection = document.getElementById('salaried-section');
     
-            // Handle employment type selection
-            function toggleEmploymentSection(selectedType) {
-                if (selectedType === 'self-employed') {
-                    selfEmployedSection.classList.add('active');
-                    salariedSection.classList.remove('active');
-                    selfEmployedBtn.classList.add('active');
-                    salariedBtn.classList.remove('active');
-                } else if (selectedType === 'salaried') {
-                    salariedSection.classList.add('active');
-                    selfEmployedSection.classList.remove('active');
-                    salariedBtn.classList.add('active');
-                    selfEmployedBtn.classList.remove('active');
-                }
-            }
+            selfEmployedBtn.addEventListener('click', () => {
+                selfEmployedSection.classList.toggle('active');
+                salariedSection.classList.remove('active');
+                selfEmployedBtn.classList.toggle('active');
+                salariedBtn.classList.remove('active');
+            });
     
-            selfEmployedBtn.addEventListener('click', () => toggleEmploymentSection('self-employed'));
-            salariedBtn.addEventListener('click', () => toggleEmploymentSection('salaried'));
+            salariedBtn.addEventListener('click', () => {
+                salariedSection.classList.toggle('active');
+                selfEmployedSection.classList.remove('active');
+                salariedBtn.classList.toggle('active');
+                selfEmployedBtn.classList.remove('active');
+            });
     
-            // Close popup
-            document.getElementById('close-btn').addEventListener('click', function() {
+            document.getElementById('close-btn').addEventListener('click', () => {
                 document.getElementById('popup').style.display = 'none';
             });
-    
-            // OTP System Logic
-            const otpSection = document.getElementById('otp-section');
-            otpSection.style.display = 'none'; // Initially hide the OTP field
-    
-            const otpBtn = document.getElementById('otp-btn');
-    
-            otpBtn.addEventListener('click', function () {
-                const mobileInput = document.getElementById('mobile').value;
-    
-                if (otpBtn.innerHTML === 'Get OTP') {
-                    if (!mobileInput) {
-                        alert("Please enter your mobile number.");
-                        return;
-                    }
-                    // Show the OTP input field and change button text to "Submit"
-                    otpSection.style.display = 'block';
-                    otpBtn.innerHTML = 'Submit';
-    
-                    // Simulate sending OTP (this will be replaced by the actual backend call)
-                    console.log('OTP sent to:', mobileInput);
-    
-                } else if (otpBtn.innerHTML === 'Submit') {
-                    const otpInput = document.getElementById('otp').value;
-    
-                    if (!otpInput) {
-                        alert('Please enter the OTP.');
-                        return;
-                    }   
-    
-                    // Simulate verifying OTP (replace this with backend verification)
-                    console.log('Verifying OTP:', otpInput);
-    
-                    // Assuming OTP is correct
-                    alert('OTP verified, form will be submitted!');
-                    document.getElementById('inquiry-form').submit();
-                }
-            });
-        });
-
-        function getOTP() {
-    const mobileInput = document.getElementById('mobile').value;
-    if (!mobileInput) {
-        alert("Please enter your mobile number.");
-        return;
-    }
-
-    // Send mobile number to backend to request OTP
-    fetch('http://localhost:3000/request-otp', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ mobile: mobileInput })
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log('OTP sent:', data);
-        alert("OTP sent to your phone!");
-
-        // Show the OTP field
-        document.getElementById('otp-section').style.display = 'block';
-        const otpBtn = document.getElementById('otp-btn');
-        otpBtn.innerHTML = 'Submit';
-        otpBtn.setAttribute('onclick', 'submitOTP()');
-    })
-    .catch(error => console.log('Error sending OTP:', error));
-}
-
-function submitOTP() {
-    const mobileInput = document.getElementById('mobile').value;
-    const otpInput = document.getElementById('otp').value;
-    if (!otpInput) {
-        alert("Please enter the OTP.");
-        return;
-    }
-
-    // Send OTP to backend for verification
-    fetch('http://localhost:3000/verify-otp', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ mobile: mobileInput, otp: otpInput })
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log('OTP verification response:', data);
-        alert(data);
-
-        // Assuming OTP is correct
-        if (data === 'OTP verified') {
-            alert('Form submitted successfully!');
-            document.getElementById('inquiry-form').submit();
-        } else {
-            alert('OTP verification failed.');
-        }
-    })
-    .catch(error => console.log('Error verifying OTP:', error));
-}
-
-    </script>
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyCfkPXK-cdJ4kmA02V7HgwWtPNJUummwdw",
-          authDomain: "credita-finance.firebaseapp.com",
-          projectId: "credita-finance",
-          storageBucket: "credita-finance.appspot.com",
-          messagingSenderId: "746547367761",
-          appId: "1:746547367761:web:a986bf8032ac0ed1230d70",
-          measurementId: "G-VVVBXB9N4Q"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script>
-    
-
-</body>
-</html>
-<div data-elementor-type="twbb_header" data-elementor-id="52468" class="elementor elementor-52468">
+        </script>
+    </body>
+    </html><div data-elementor-type="twbb_header" data-elementor-id="52468" class="elementor elementor-52468">
     <div class="elementor-element elementor-element-8vujaam0 e-con-boxed twbb_section e-flex e-con e-parent" data-id="8vujaam0" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;tenweb_sticky&quot;:&quot;top&quot;,&quot;tenweb_sticky_on&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;],&quot;tenweb_sticky_offset&quot;:0,&quot;tenweb_sticky_effects_offset&quot;:0}">
         <div class="e-con-inner">
             <div class="elementor-element elementor-element-47498pii elementor-widget__width-initial elementor-widget-tablet__width-initial elementor-widget elementor-widget-image" data-id="47498pii" data-element_type="widget" data-widget_type="image.default">
