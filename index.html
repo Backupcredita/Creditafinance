@@ -480,15 +480,15 @@ var woocommerce_params = {"ajax_url":"\/128\/wp-admin\/admin-ajax.php","wc_ajax_
     <div class="elementor-element elementor-element-8vujaam0 e-con-boxed twbb_section e-flex e-con e-parent" data-id="8vujaam0" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;tenweb_sticky&quot;:&quot;top&quot;,&quot;tenweb_sticky_on&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;],&quot;tenweb_sticky_offset&quot;:0,&quot;tenweb_sticky_effects_offset&quot;:0}">
         <div class="e-con-inner">
             <div class="elementor-element elementor-element-47498pii elementor-widget__width-initial elementor-widget-tablet__width-initial elementor-widget elementor-widget-image" data-id="47498pii" data-element_type="widget" data-widget_type="image.default">
-                <div class="elementor-widget-container">
+                <div class="elementor-widget-container" style="display: flex; justify-content: left;">
                     <a href="/index.html">
-                        <img src="/logo.png" class="attachment-full size-full wp-image-52403" alt="Credita finance a website for Financial services providing loans,overdraft facilities for a comparitively lower rate ,we provide loans, advances,overdraft,overdraft to salaried person,financial consultancy,credit,and are affiliated with so many banks like bajaj finserv,kotak,axis bank,hdfc,icici,aditya birla,and so many more. this is the logo of this website" style="height: 80px; margin-left: 10px;" />
+                        <img src="/logo.png" class="attachment-full size-full wp-image-52403" alt="Credita finance a website for Financial services providing loans,overdraft facilities for a comparitively lower rate ,we provide loans, advances,overdraft,overdraft to salaried person,financial consultancy,credit,and are affiliated with so many banks like bajaj finserv,kotak,axis bank,hdfc,icici,aditya birla,and so many more. this is the logo of this website" style="height: 80px;" />
                     </a>
                 </div>
             </div>
             <div class="elementor-element elementor-element-5sz3qdc7 elementor-widget__width-initial elementor-widget-tablet__width-initial twbb-nav-menu__align-right twbb-nav-menu__align-mobile-center twbb-nav-menu--indicator-classic twbb-nav-menu--toggle twbb-nav-menu--burger twbb-nav-menu--stretch yes twbb-nav-menu--dropdown-tablet twbb-nav-menu__text-align-center elementor-widget elementor-widget-twbb-nav-menu" data-id="5sz3qdc7" data-element_type="widget" data-settings="{&quot;layout&quot;:&quot;horizontal&quot;,&quot;toggle&quot;:&quot;burger&quot;,&quot;full_width&quot;:&quot; yes&quot;}" data-widget_type="twbb-nav-menu.default">
                 <div class="elementor-widget-container">
-                    <nav class="twbb-nav-menu--main twbb-nav-menu__container twbb-nav-menu--layout-horizontal e--pointer-none" style="margin-right: 100px;">
+                    <nav class="twbb-nav-menu--main twbb-nav-menu__container twbb-nav-menu--layout-horizontal e--pointer-none" >
                         <ul id="menu-1-5sz3qdc7" class="twbb-nav-menu twbb-menu_term_id-5826">
                             <li class="a:1:{i:0;s:0:&quot;&quot;;} menu-item menu-item-type-post_type menu-item-object-page menu-item-52455">
                                 <a href="/services.html" class="twbb-item">Services</a>
@@ -569,6 +569,7 @@ var woocommerce_params = {"ajax_url":"\/128\/wp-admin\/admin-ajax.php","wc_ajax_
                             </li>
                         </ul>
                     </nav>
+                    
 
                     <!-- Mobile Sidebar -->
                     <nav class="twbb-nav-menu--dropdown twbb-nav-menu__container">
@@ -585,6 +586,7 @@ var woocommerce_params = {"ajax_url":"\/128\/wp-admin\/admin-ajax.php","wc_ajax_
                             </li>
                         </ul>
                     </nav>
+                    
                     <style>
                         .twbb-nav-menu ul {display:none;}
                         .dropdown {
@@ -682,6 +684,8 @@ color: #007bff; /* Change text color on hover */
                     </style>
                 </div>
             </div>
+            <input type="text" placeholder="search..." style="margin-top: 2%; width: 30vh;">
+            
             <div class="elementor-element elementor-element-j3ah3mgg elementor-hidden-mobile elementor-widget__width-initial elementor-widget-tablet__width-initial elementor-widget-mobile__width-inherit elementor-align-right elementor-mobile-align-center elementor-widget elementor-widget-button" data-id="j3ah3mgg" data-element_type="widget" data-widget_type="button.default">
                 <div class="elementor-widget-container">
                     <div class="elementor-button-wrapper">
@@ -755,7 +759,7 @@ color: #007bff; /* Change text color on hover */
 				<div class="elementor-element elementor-element-0ypi7fg2 elementor-widget__width-initial elementor-widget-tablet__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-image" data-id="0ypi7fg2" data-element_type="widget" data-widget_type="image.default">
 					<div class="elementor-element elementor-element-0ypi7fg2 elementor-widget__width-initial elementor-widget-tablet__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-image" data-id="0ypi7fg2" data-element_type="widget" data-widget_type="image.default">
 						<div class="elementor-widget-container">
-															<!-- <img fetchpriority="high" width="1216" height="832" src="/main.jpg" class="attachment-full size-full wp-image-52444" alt="" />													</div> -->
+															<img fetchpriority="high" width="1216" height="832" src="/main.jpg" class="attachment-full size-full wp-image-52444" alt="" />													</div> -->
 						
 				<!DOCTYPE html>
 <html lang="en">
@@ -767,18 +771,27 @@ color: #007bff; /* Change text color on hover */
     /* Main styling for overlay content */
     .overlay-content {
       position: absolute;
-      top: 130px; /* Adjust to move content below the navbar */
+      top: -10px; /* Adjust to move content below the navbar */
       left: 50%;
       transform: translateX(-50%);
       z-index: 2; /* Ensure this content is on top of the slider */
       text-align: center;
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
     .search-bar {
       padding: 10px;
-      width: 350px;
+      width: 30%;
       margin: 10px;
       font-size: 16px;
+
     }
 
     .get-started-btn, .contact-us-btn {
@@ -841,21 +854,21 @@ color: #007bff; /* Change text color on hover */
 </h1>
 </div>
 	</div></div></div>
-    <input type="text" class="search-bar" placeholder="Search..." ><br>
+    <!-- <br>
 
-    <button class="get-started-btn"><a href="/apply form"><p style="color:white;"> Get Started</p></a></button>
-    <button class="contact-us-btn"><a href="/apply form"><p style="color:white;">Contact Us</p></a></button>
+    <button class="get-started-btn" style="width: 30%;"><a href="/apply form"><p style="color:white;"> Get Started</p></a></button>
+    <button class="contact-us-btn"><a href="/apply form"><p style="color:white;">Contact Us</p></a></button> -->
   </div>
 
   <!-- Photo slider (background images) -->
   <div class="slider-container">
     <div class="slider">
       <div class="slide">
-        <img src="/photos/5471.jpg" alt="Image 1" style="max-width: 100%; height:auto;">
+        <img src="/photos/first.jpg" alt="Team at Credita Finance providing seamless services to customers. The company is currently hiring, presenting a great opportunity to start your career." style="max-width: 100%; height:auto;">
       </div>
       <div class="slide">
 		<a href="/testimonials.html">
-        <img src="/photos/5482.jpg" alt="Image 2" style="max-width: 100%; height: auto;">
+        <img src="/photos/5482.jpg" alt="" style="max-width: 100%; height: auto;">
 	</a>	
       </div>
       <div class="slide">
@@ -949,7 +962,7 @@ color: #007bff; /* Change text color on hover */
                 </div>
                 </section>
 		<div class="elementor-element elementor-element-xc0cm9nx e-con-boxed twbb_section e-flex e-con e-parent" data-id="xc0cm9nx" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-					<div class="e-con-inner">
+					<div class="e-con-inner" style="margin-top: -100px;">
 		<div class="elementor-element elementor-element-uxlu2ui8 e-con-full e-flex e-con e-parent" data-id="uxlu2ui8" data-element_type="container">
 				<div class="elementor-element elementor-element-8vp7yyte elementor-widget__width-initial elementor-widget-tablet__width-initial elementor-widget-mobile__width-inherit elementor-invisible elementor-widget elementor-widget-heading" data-id="8vp7yyte" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}" data-widget_type="heading.default">
 				<div class="elementor-widget-container">
