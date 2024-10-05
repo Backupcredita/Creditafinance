@@ -1,3 +1,7 @@
+*{
+    overflow:auto;
+}
+
 .bank-wrapper .banks-strip .bank-image{
     height: 100px;
 }
