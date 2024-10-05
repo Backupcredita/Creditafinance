@@ -1,6 +1,5 @@
 *{
-    overflow:scroll;
-}
+overflow:visible;}
 
 .bank-wrapper .banks-strip .bank-image{
     height: 100px;
