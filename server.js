@@ -3,7 +3,8 @@ const path = require('path');
 const app = express();
 
 // Serve static files (CSS, JS, Images)
-app.use('/photos', express.static(path.join(__dirname, 'photos', 'banks','root')));
+app.use('/photos', express.static(path.join(__dirname, 'photos')));
+app.use('/banks', express.static(path.join(__dirname, 'banks')));
 
 // Routes for Navbar
 app.get('/', (req, res) => {
