@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 
 // Serve static files (CSS, JS, Images)
-app.use(express.static(path.join(__dirname, 'public'))); // assuming your static files are in 'public' folder
+app.use(express.static(path.join(__dirname, 'root','photos','banks'))); // assuming your static files are in 'public' folder
 
 // Routes for Navbar
 app.get('/', (req, res) => {
