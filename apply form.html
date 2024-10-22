@@ -583,13 +583,22 @@ var woocommerce_params = {"ajax_url":"\/128\/wp-admin\/admin-ajax.php","wc_ajax_
 						.submit-btn:hover {
 							background-color: #0056b3;
 						}
+						.thank-you-message {
+							display: none; /* Initially hidden */
+							background-color: #e6ffe6;
+							color: #4CAF50;
+							padding: 15px;
+							border-radius: 5px;
+							text-align: center;
+							margin-top: 20px;
+						}
 					</style>
 				</head>
 				<body>
 				
 					<div class="form-container">
 						<h2>Apply for Loan</h2>
-						<form id="loanApplicationForm" method="POST" action="https://eleven-cameras-thank.loca.lt/apply">
+						<form id="loanApplicationForm" method="POST" action="http://localhost:3000/apply">
 							<div class="form-group">
 								<label for="name">Full Name</label>
 								<input type="text" id="name" name="name" required style="border: none; background-color: #abdafa;">
@@ -628,7 +637,7 @@ var woocommerce_params = {"ajax_url":"\/128\/wp-admin\/admin-ajax.php","wc_ajax_
 							<div class="form-group">
 								<label for="employment-type">Employment Type</label>
 								<select id="employment-type" name="employment_type" required>
-									<option value="Salaried" >Salaried</option>
+									<option value="Salaried">Salaried</option>
 									<option value="Self-Employed">Self-Employed</option>
 								</select>
 							</div>
@@ -655,10 +664,52 @@ var woocommerce_params = {"ajax_url":"\/128\/wp-admin\/admin-ajax.php","wc_ajax_
 				
 							<button type="submit" class="submit-btn">Submit</button>
 						</form>
+				
+						<div class="thank-you-message" id="thankYouMessage">
+							<span style="font-size: 24px;">✔️</span><br>
+							Thank you for contacting us!<br>
+							Your application has been submitted.<br>
+							Our executive will contact you shortly.
+						</div>
 					</div>
+				
+					<script>
+						const form = document.getElementById('loanApplicationForm');
+						const thankYouMessage = document.getElementById('thankYouMessage');
+				
+						form.addEventListener('submit', function(event) {
+							event.preventDefault(); // Prevent default form submission
+				
+							const formData = new FormData(form);
+							const data = Object.fromEntries(formData.entries());
+				
+							// Send the form data to the backend
+							fetch(form.action, {
+								method: 'POST',
+								headers: {
+									'Content-Type': 'application/json',
+								},
+								body: JSON.stringify(data),
+							})
+							.then(response => {
+								if (response.ok) {
+									// Hide the form and show the thank-you message
+									form.style.display = 'none';
+									thankYouMessage.style.display = 'block';
+								} else {
+									alert('There was an error submitting the form. Please try again.');
+								}
+							})
+							.catch(error => {
+								console.error('Error:', error);
+								alert('There was an error submitting the form. Please try again.');
+							});
+						});
+					</script>
 				
 				</body>
 				</html>
+				
 				
                 
 		<div class="elementor-element elementor-element-0d79z4ak e-con-boxed twbb_section e-flex e-con e-parent" data-id="0d79z4ak" data-element_type="container">
