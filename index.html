@@ -885,7 +885,7 @@ option[disabled]{
             const formData = new FormData(inquiryForm);
             const formObject = Object.fromEntries(formData.entries());
 
-            fetch('http://localhost:3000/submit-inquiry', {
+            fetch('https://main-form-backend.onrender.com/submit-inquiry', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
