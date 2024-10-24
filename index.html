@@ -576,7 +576,7 @@ option[disabled]{
 }
 
 		</style>
-    <!DOCTYPE html>
+ <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -771,6 +771,13 @@ option[disabled]{
             input[type="number"] {
                 -moz-appearance: textfield;
             }
+			.success-message {
+            display: none;
+            color: #28a745;
+            font-size: 1.2em;
+            text-align: center;
+            margin-top: 20px;
+        }
         </style>
     </head>
     <body>
@@ -867,6 +874,42 @@ option[disabled]{
                 document.getElementById('popup').style.display = 'none';
             });
         </script>
+		<script>
+			    const inquiryForm = document.getElementById('inquiry-form');
+        const successMessage = document.getElementById('success-message');
+        const popup = document.getElementById('popup');
+        
+        inquiryForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            const formData = new FormData(inquiryForm);
+            const formObject = Object.fromEntries(formData.entries());
+
+            fetch('http://localhost:3000/submit-inquiry', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formObject),
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                // Hide the form and show the success message
+                popup.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+
+        // Close the popup when close button is clicked
+        document.getElementById('close-btn').addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+		</script>
     </body>
     </html>
 <div data-elementor-type="twbb_header" data-elementor-id="52468" class="elementor elementor-52468" >
