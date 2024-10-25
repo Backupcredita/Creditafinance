@@ -576,7 +576,7 @@ option[disabled]{
 }
 
 		</style>
- <!DOCTYPE html>
+    <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -885,7 +885,7 @@ option[disabled]{
             const formData = new FormData(inquiryForm);
             const formObject = Object.fromEntries(formData.entries());
 
-            fetch('https://main-form-backend.onrender.com/submit-inquiry', {
+            fetch('http://localhost:3000/submit-inquiry', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -910,8 +910,138 @@ option[disabled]{
             popup.style.display = 'none';
         });
 		</script>
+		<script>
+			import { gql, useQuery } from '@apollo/client';
+
+const GET_USER = gql`
+  query GetUser {
+    user(id: "1") {
+      name
+    }
+  }
+`;
+
+const UserComponent = () => {
+  const { loading, error, data } = useQuery(GET_USER);
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  return <h1>{data.user.name}</h1>;
+};
+
+		</script>
     </body>
     </html>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome to Credita Finance</title>
+        <style>
+            /* Reset some styles */
+            * {
+                box-sizing: border-box;
+            }
+    
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f7f7f7;
+                color: #333;
+                margin: 0;
+                padding: 0;
+            }
+    
+            /* New offer box styling */
+            .diwali-offer-overlay {
+                display: none; /* Hidden by default */
+                position: fixed;
+                bottom: 20px;
+                right: -320px; /* Start off-screen to the right */
+                width: 300px;
+                background-image: url(/happy-diwali-template-with-text-image-space-red-background_1017-40121.avif);
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                z-index: 999;
+                animation: slideIn 0.6s ease forwards; /* Use sliding animation */
+            }
+    
+            .diwali-offer-overlay h2 {
+                color: #b38b2d;
+                font-size: 1.2em;
+                margin-bottom: 10px;
+            }
+    
+            .diwali-offer-overlay p {
+                color: #cecece;
+                font-size: 0.95em;
+                line-height: 1.3;
+            }
+    
+            /* Close button styling */
+          
+    
+            /* Slide-in animation */
+            @keyframes slideIn {
+                from { right: -320px; } /* Start from the right, off-screen */
+                to { right: 20px; } /* End position */
+            }
+    
+            /* Slide-out animation */
+            @keyframes slideOut {
+                from { right: 20px; } /* Start from the visible position */
+                to { right: -320px; } /* Slide out to the right */
+            }
+    
+            .slide-out {
+                animation: slideOut 0.6s ease forwards; /* Apply slide-out animation */
+            }
+        </style>
+    </head>
+    <body>
+    
+        <!-- Diwali Offer Box -->
+        <div class="diwali-offer-overlay" id="diwaliOffer">
+            <button class="diwali-close-btn" onclick="closeDiwaliOffer()" style="  position: absolute;
+            top: 8px;
+            right: 8px;
+            background: none;
+            color: black;
+            border: none;
+            width: 25px;
+            font-size: 20px;
+            cursor: pointer;"><span>&times;</span></button>
+            <h2>Happy Diwali 🪔</h2>
+            <p>Celebrate with exclusive offers from Credita Finance. Wishing you a prosperous and joyful Festival of Lights!</p>
+            <div>
+                <a href="/diwali page.html">View Offers!</a>
+            </div>
+        </div>
+    
+        <script>
+            // Show the offer box after 5 seconds
+            window.onload = function() {
+                setTimeout(function() {
+                    document.getElementById('diwaliOffer').style.display = 'block';
+                }, 5000);
+            };
+    
+            // Close offer box function with slide-out animation
+            function closeDiwaliOffer() {
+                const offerBox = document.getElementById('diwaliOffer');
+                offerBox.classList.add('slide-out'); // Add slide-out class
+                setTimeout(function() {
+                    offerBox.style.display = 'none'; // Hide after animation ends
+                    offerBox.classList.remove('slide-out'); // Remove class for next time
+                }, 600); // Match duration of the animation
+            }
+        </script>
+    
+    </body>
+    </html>
+    
+
 <div data-elementor-type="twbb_header" data-elementor-id="52468" class="elementor elementor-52468" >
 				<div class="elementor-element elementor-element-8vujaam0 e-con-boxed twbb_section e-flex e-con e-parent" data-id="8vujaam0" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;tenweb_sticky&quot;:&quot;top&quot;,&quot;tenweb_sticky_on&quot;:[&quot;desktop&quot;,&quot;tablet&quot;,&quot;mobile&quot;],&quot;tenweb_sticky_offset&quot;:0,&quot;tenweb_sticky_effects_offset&quot;:0}">
 					<div class="e-con-inner">
@@ -2494,7 +2624,7 @@ option[disabled]{
 		<div class="elementor-element elementor-element-iv1lms55 e-con-full e-flex e-con e-parent" data-id="iv1lms55" data-element_type="container">
 				<div class="elementor-element elementor-element-l6v427t7 elementor-widget__width-initial elementor-widget-tablet__width-initial elementor-widget-mobile__width-inherit elementor-mobile-button-align-stretch elementor-button-align-center elementor-widget elementor-widget-twbb_form" data-id="l6v427t7" data-element_type="widget" data-settings="{&quot;button_width&quot;:&quot;30&quot;,&quot;step_next_label&quot;:&quot;Next&quot;,&quot;step_previous_label&quot;:&quot;Previous&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}" data-widget_type="twbb_form.default">
 				<div class="elementor-widget-container">
-					<form class="elementor-form" method="post" name="Subscribe to Our Newsletter">
+					<form class="elementor-form" method="post" name="Subscribe to Our Newsletter" >
 			<input type="hidden" name="post_id" value="52469"/>
 			<input type="hidden" name="form_id" value="l6v427t7"/>
 			<input type="hidden" name="referer_title" value="Home" />
