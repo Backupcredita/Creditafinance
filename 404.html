@@ -546,6 +546,15 @@ var woocommerce_params = {"ajax_url":"\/128\/wp-admin\/admin-ajax.php","wc_ajax_
                         width: 100%;
                     }
                 </style>
+				<script>
+    // If the page is not found, log the error to help with debugging
+    console.error("404 Error: Page not found");
+
+    // Optional: You can add logic to redirect users automatically
+    setTimeout(() => {
+      window.location.href = '/'; // Redirect to the homepage after 5 seconds
+    }, 5000);
+  </script>
    			<div data-elementor-type="twbb_footer" data-elementor-id="52469" class="elementor elementor-52469">
 				<div class="elementor-element elementor-element-v46o2wma e-con-boxed twbb_section e-flex e-con e-parent" data-id="v46o2wma" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
 					<div class="e-con-inner">
