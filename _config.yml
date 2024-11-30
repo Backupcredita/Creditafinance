@@ -1,8 +1,0 @@
-title: Credita Finance
-description: Credita Finance offers expert financial advice and tailored solutions in loans, investments, and credit management. Secure your financial future today!
-baseurl: "" # Leave empty if not using a subfolder
-url: "https://creditafinance.in/" # Your GitHub Pages URL
-
-# Enable Gzip compression (automatically handled by GitHub)
-plugins:
-  - jekyll-gzip
